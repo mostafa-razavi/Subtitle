@@ -232,46 +232,7 @@ def get_top_n_difficult_words_2(movie_lines_list, top_n, dictionary_dict, word_f
     return meaningful_words
 
 
-def combine_wiktionary_ngrams_into_one_json():
-    wiktionary_ngrams_dict = {}
-
-    for i in range(10):
-        ngram = i+1
-        with open('C:/myProjects/SubtitlePro/Other_data/wiktionary_' + str(ngram) + 'grams.json') as f:
-            wiktionary_ngrams = json.load(f)
-        wiktionary_ngrams_dict[ngram] = wiktionary_ngrams
-
-    with open('C:/myProjects/SubtitlePro/Other_data/wiktionary_2grams_JJNN.json') as f:
-        wiktionary_ngrams = json.load(f)    
-    wiktionary_ngrams_dict['2_NNJJ'] =  wiktionary_ngrams  
-
-    with open('C:/myProjects/SubtitlePro/Other_data/wiktionary_phrasal_verbs.json') as f:
-        wiktionary_ngrams = json.load(f)    
-    wiktionary_ngrams_dict['phrasal_verbs'] =  wiktionary_ngrams      
-
-    with open('C:/myProjects/SubtitlePro/Other_data/wiktionary_2grams_AllButVB.json') as f:
-        wiktionary_ngrams = json.load(f)    
-    wiktionary_ngrams_dict['2_AllButVB'] =  wiktionary_ngrams   
-
-    with open('C:/myProjects/SubtitlePro/Other_data/wiktionary_3grams_JJNN.json') as f:
-        wiktionary_ngrams = json.load(f)    
-    wiktionary_ngrams_dict['3_NNJJ'] =  wiktionary_ngrams  
-
-    with open('C:/myProjects/SubtitlePro/Other_data/wiktionary_3grams_AllButVB.json') as f:
-        wiktionary_ngrams = json.load(f)    
-    wiktionary_ngrams_dict['3_AllButVB'] =  wiktionary_ngrams           
-
-    with open('C:/myProjects/SubtitlePro/Other_data/wiktionary_ngrams.json', 'w') as f:
-        json.dump(wiktionary_ngrams_dict, f)
-
-
-
 if __name__ == '__main__':
-    #combine_wiktionary_ngrams_into_one_json()
-    #find_wiktionary_ngrams_in_subtitle_from_corpus(imov, 2)
-
-
-
     work_dir = 'C:/myProjects/SubtitlePro/'
     with open(work_dir + 'Data/wiktionary.json') as json_file: 
         wiktionary = json.load(json_file)

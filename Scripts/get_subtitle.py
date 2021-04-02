@@ -43,7 +43,6 @@ def get_all_movie_title_years():
             with open(out_path, 'w', newline='', encoding="utf-8") as f: 
                 write = csv.writer(f) 
                 write.writerows(movie_titles_list) 
-#get_all_movie_title_years()        
 
 def generate_mso_index():
     
@@ -58,15 +57,10 @@ def generate_mso_index():
             df_temp = pd.read_csv(out_path, names=['index', 'name', 'year'])
             df = pd.concat([df, df_temp], ignore_index=True)
     df.to_csv('mso_index.csv', index=False)
-#generate_mso_index()        
 
 
 
 def get_movie_index_info(movie_name):
-    #df0 = pd.read_csv('mso_index.csv',delimiter=',')
-    #df1 = pd.read_csv('mso_movie_subtitle_index.txt',delimiter=',')
-    #df = pd.merge(df0, df1, left_on='index', right_on='index')
-    #df.to_csv('mso_index_name_year_subindex.csv', index=False)
     df = pd.read_csv('C:/myProjects/SubtitlePro/Data/mso_index_name_year_subindex.csv')
     movie_row = df[df['name'] == movie_name].values[0]
     movie_index = movie_row[0]
@@ -76,8 +70,6 @@ def get_movie_index_info(movie_name):
 
     return subtitle_index, movie_index, movie_name, movie_year
 
-subtitle_index, movie_index, movie_name, movie_year =  get_movie_index_info('Madagascar')
-#print(subtitle_index, movie_index, movie_name, movie_year)    
 
 
 def save_subtitle_zipfile(url, out_file_name):
@@ -85,9 +77,6 @@ def save_subtitle_zipfile(url, out_file_name):
     with open(out_file_name, 'wb') as f:
         f.write(response.content)
     return response, out_file_name
-#url = 'http://www.moviesubtitles.org/download-5613.html'
-#file_out = 'C:/myProjects/TDI/CapstoneProject/file.zip'
-#_, _ = save_subtitle_zipfile(url, file_out)
 
 
 def get_subtitle_url_from_movie_index(movie_index, target_language):
@@ -151,11 +140,6 @@ def download_all_movie_subtitles(language):
                 save_subtitle_zipfile(subtitle_url, out_file_name)
                 print('Subtitle was downloaded for movie ' + str(movie_index) + ' subtitle ' + str(subtitle_index))
 
-#download_all_movie_subtitles('English')            
-
-
-#subtitle_url, subtitle_index = get_subtitle_url_from_movie_index(85, 'English')
-#print(subtitle_url, subtitle_index)
 
 
 def download_one_movie_subtitle(movie_index, language, out_file_name):
@@ -221,3 +205,19 @@ def get_movie_lines_list(srt_file):
 if __name__ == '__main__':        
 
     print(get_movie_lines_list('C:/myProjects/TDI/CapstoneProject/srt/other/12AngryMen.srt'))    
+
+    #get_all_movie_title_years()        
+    #generate_mso_index()        
+
+    #subtitle_index, movie_index, movie_name, movie_year =  get_movie_index_info('Madagascar')
+    #print(subtitle_index, movie_index, movie_name, movie_year)    
+
+
+    #url = 'http://www.moviesubtitles.org/download-5613.html'
+    #file_out = 'C:/myProjects/TDI/CapstoneProject/file.zip'
+    #_, _ = save_subtitle_zipfile(url, file_out)
+
+    #download_all_movie_subtitles('English')            
+
+    #subtitle_url, subtitle_index = get_subtitle_url_from_movie_index(85, 'English')
+    #print(subtitle_url, subtitle_index)
